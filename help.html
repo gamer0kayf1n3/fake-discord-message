@@ -1,0 +1,60 @@
+<html>
+    <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Help</title>
+        <style>
+        body{
+            font-family: Arial;
+        }
+            .spoiler {
+    display: inline-block;
+    padding: 1px;
+    border-radius: 5%;
+    background-color: #202225;
+    color: #202225;
+
+}
+@keyframes spoiler {
+    from {
+            background-color: #202225;
+    color: #202225;
+    }
+    to {
+            background-color:#4a4d53;
+    color: white;
+    }
+}
+.spoiler:active {
+    background-color:#4a4d53;
+    color: white;
+    animation: spoiler 0.2s;
+}
+        </style>
+    </head>
+    <body>
+        <h1>Help for Discord Fake Message Generator</h1>
+        <h2>Fetch User</h2>
+        <p>To use fetch, go to Discord, enable Developer Options, and right-click a user, and copy their ID. Put their ID in the Discord ID section, click Fetch, wait a few seconds, and voilà, their Discord info will show up in the correct input boxes.</p>
+        <h2>Usage</h2>
+        <h3>Message</h3>
+        <p>To put messages, type your message in. If you want additional syntaxes, use the following syntax below. They are derived from Github and/or Discord's markdown language.</p>
+        <p>**bold** = <b>bold</b></p>
+        <p>*itallic* = <i>itallic</i></p>
+        <p>~~strikethrough~~ = <strike>strikethrough</strike></p>
+        <p>||spoiler|| = <span class="spoiler">spoiler</span></p>
+        <p>:emoji_name: = emoji_result <a href="https://emoji-css.afeld.me/">(Press for more info)</a></p>
+        <p><@username> = <span style="background-color:#4e4d73;color:white;">@username</span></p>
+        <p><#channel> = <span style="background-color:#4e4d73;color:white;">#channel</span></p>
+        <p><@&role_name#<abbr title="hex code">00ff00</abbr>> = <span style='color: #00FF00;background-color:rgba(0,255,0,0.5);'>@role_name</span></p>
+        <p>https://example.com/index.html = <span style="color: #0aacea;">https://example.com/index.html</span></p>
+        <p>More features coming soon...</p>
+        <h3>Profile URL</h3>
+        <p>To use, put the user's profile picture inside the input box. If the fetch function is used, the input box should be automatically filled.</p>
+        <h3>Username</h3>
+        <p>To use, put the user's username inside the input box. If the fetch function is used, the input box should be automatically filled. But if you want to change the username in the output, you can always change it by editing.</p>
+        <h3>Role Color</h3>
+        <p>This only applies if you are faking a screenshot from a Discord server. To use, press the color button, and change the color with the default color picker.</p>
+        <h3>Date</h3>
+        <p>To use, put the desired time you want the message to look like when it was sent. If sent today, the usual format is <b>Today at HH:MM am/pm</b>.</p>
+    </body>
+</html>

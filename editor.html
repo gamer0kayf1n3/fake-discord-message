@@ -1,0 +1,29 @@
+<html>
+	<body>
+	<h1 id="title">Discord HTML Editor</h1>
+	Profile Picture or ID<input type="text" id="pfp"></input><br>
+	Username<input type="text" id="username"></input><br>
+	Date and time<input type="text" id="dt"></input><br>
+	Message<input type="text" id="msg"></input><br>
+	<div id="detect" style="position:fixed;width:100vw;height:100vh;top:0;display:flex;justify-content:center;align-items:center;background-color:rgba(255,255,255,0.8);font-size: 3vw">This editor is deprecated, the new version can be found  <a href="editor_r.html"> here</a>.</div>
+	<button id="button" onclick="goto()">owo</button>
+	<script>
+	var params = "discord.html?";
+	if (document.getElementById("pfp").value != null) {params+="pfp="+document.getElementById("pfp").value+"&";}
+	if (document.getElementById("username").value != null) {params+="uname="+document.getElementById("username").value+"&";}
+	if (document.getElementById("dt").value != null) {params+="dt="+document.getElementById("dt").value+"&";}
+	if (document.getElementById("msg").value != null) {params+="msg="+document.getElementById("msg").value+"&";}
+	function goto() {
+		location.href=params;
+	}
+	setInterval(function () {if (!document.getElementById("detect")) {
+document.getElementById("title").innerHTML = "<a href='editor_r.html?jumpscared=1'>DUDE JUST GO TO TO THE SITE IT'S NOT THAT HARD.</a>";
+document.getElementById("title").style.fontSize = "8vw";
+document.getElementById("username").remove();
+document.getElementById("pfp").remove();
+document.getElementById("dt").remove();
+document.getElementById("msg").remove();
+}}, 1000);
+	</script>
+	</body>
+</html>

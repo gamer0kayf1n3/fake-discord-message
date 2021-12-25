@@ -1,0 +1,249 @@
+<html>
+	<head>
+		<style>
+			@font-face {
+  font-family: Whitney;
+  src: url(whitneylight.otf);
+}
+body {
+font-family: Whitney, Arial;
+color: white;
+background-color: 36393f;
+}
+#profilepic {
+border-radius:100%;
+ width:30px;
+ height:auto; 
+float:left;
+padding:0px 14px 0px 14px;
+transform: translateY(5px);
+ margin-bottom:100vh;
+ display:inline-block;
+}
+#username {
+font-size: 11.3px;
+transform: translate(-3px,3px);
+display: inline;
+}
+#message {
+transform: translate(-1px, -7px);
+font-weight: normal;
+font-size: 11px;
+}
+#dateandtime {
+font-size:8px;
+color:536c69;
+
+}
+#real {
+    color:gray;
+}
+.url {
+    color: #0aacea;
+}
+.pinguser {
+    background-color:#4e4d73;
+
+}
+.spoiler {
+    display: inline-block;
+    padding: 1px;
+    border-radius: 5%;
+    background-color: #202225;
+    color: #202225;
+
+}
+@keyframes spoiler {
+    from {
+            background-color: #202225;
+    color: #202225;
+    }
+    to {
+            background-color:#4a4d53;
+    color: white;
+    }
+}
+.spoiler:active {
+    background-color:#4a4d53;
+    color: white;
+    animation: spoiler 0.2s;
+}
+
+		</style>
+	</head>
+	<body>
+	<img src="https://cdn.discordapp.com/avatars/810392547955441744/89e40c172108bc2023b224cc0bc8540a.png?size=4096" id="profilepic">
+			<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+	<p id="username">Discord User<span id="dateandtime">         Today at 11:52 AM</span></p>
+	<p id="message">you know what that means now...</p>
+	<script>
+	var queryString = window.location.search;
+	var urlParams = new URLSearchParams(queryString);
+	if (urlParams.has('uname')) {
+		var uname = urlParams.get('uname');
+	} else{
+		var uname = "Discord User";
+	}(urlParams.has("dt"));
+	if (urlParams.has('dt')) {
+		var dt = urlParams.get('dt');
+	} else {
+		var dt = "Today";
+	}
+	if (urlParams.has('msg')) {
+		var msg = urlParams.get('msg');
+;
+	} else{
+		var msg = "Text here";
+	}
+	if (urlParams.has('pfp')) {
+		var pfp = urlParams.get('pfp');
+	}else{
+		var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";
+	}
+		if (urlParams.has('rolecol')) {
+
+		var rolecol = urlParams.get('rolecol');
+
+	}else{
+		var rolecol = "#ffffff";
+	}
+	document.getElementById("username").innerHTML = uname +'<span style="    display: inline-block;margin-left: 5px;">     </span><span id="dateandtime">'+dt+'</span>';
+	document.getElementById("profilepic").setAttribute("src",pfp);("before url");
+	var urls = msg.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
+	if (urls != null) {
+	    for (var i = 0; i < urls.length; i++) {
+	        msg = msg.replace(urls[i], '<span class="url">'+urls[i]+'</span>');
+	    }
+	}
+	var alternate = 1;
+	try{
+	var boldcount = (msg.match(/\*\*/g)).length;
+	
+	for (var i = 0; i < boldcount;  i++) {
+			if (alternate) {
+					msg = msg.replace("**", "<b>");
+					console.log("replaced 1");
+					alternate--;
+			}
+			else {
+					msg = msg.replace("**", "</b>");
+					console.log("replaced 2");
+					alternate++;
+			}
+	}
+}
+catch(e){};
+	try{
+	var alternate = 1;
+	var slantcount = (msg.match(/\*/g)).length;
+	
+	for (var i = 0; i < slantcount;  i++) {
+			if (alternate) {
+					msg = msg.replace("*", "<i>");
+					console.log("replaced 1");
+					alternate--;
+			}
+			else {
+					msg = msg.replace("*", "</i>");
+					console.log("replaced 2");
+					alternate++;
+			}
+	}
+}
+catch(e){};
+
+
+	try{
+	var alternate = 1;
+	var slantcount = (msg.match(/~~/g)).length;
+	
+	for (var i = 0; i < slantcount;  i++) {
+			if (alternate) {
+					msg = msg.replace("~~", "<strike>");
+					console.log("replaced 1");
+					alternate--;
+			}
+			else {
+					msg = msg.replace("~~", "</strike>");
+					console.log("replaced 2");
+					alternate++;
+			}
+	}
+}
+catch(e){};
+
+	try{
+	var alternate = 1;
+	var spoilercount = (msg.match(/||/g)).length;
+	
+	for (var i = 0; i < spoilercount;  i++) {
+			if (alternate) {
+					msg = msg.replace("||", "<span class='spoiler'>");
+					console.log("replaced 1");
+					alternate--;
+			}
+			else {
+					msg = msg.replace("||", "</span>");
+					console.log("replaced 2");
+					alternate++;
+			}
+	}
+}
+catch(e){};
+
+var temp = "";
+var content = "";
+	try{
+	var pinguser = (msg.match(/<([@#]+[A-z0-9\-~. ]{2,32})>/g));
+	for (var i = 0; i < pinguser.length;  i++) {
+	        content = pinguser[i];
+	        temp = /<([@#]+[A-z0-9\-~. ]{2,32})>/.exec(content)[1]
+			msg = msg.replace(pinguser[i], "<span class='pinguser'>" + temp + "</span>");
+			
+	}}
+
+catch(e){};
+
+function hexToRgbNew(hex) {
+  var arrBuff = new ArrayBuffer(4);
+  var vw = new DataView(arrBuff);
+  vw.setUint32(0,parseInt(hex, 16),false);
+  var arrByte = new Uint8Array(arrBuff);
+
+  return arrByte[1] + "," + arrByte[2] + "," + arrByte[3];
+}
+var temp = "";
+var content = "";
+	try{
+	var pinguser = (msg.match(/<(@&+[A-z0-9\-~. ]{2,32})(#[ABCDEF0-9abcdef]{6})>/g));
+	for (var i = 0; i < pinguser.length;  i++) {
+	        content = pinguser[i];
+	        temp = /<(@&+[A-z0-9\-~. ]{2,32})(#[ABCDEF0-9abcdef]{6})>/.exec(content);
+			msg = msg.replace(pinguser[i], "<span style='color: "+temp[2]+";background-color:rgba("+hexToRgbNew(temp[2].replace("#",""))+",0.5);'>" + temp[1].replace("&","") + "</span>");
+			
+	}}
+
+
+catch(e){};
+
+	function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+emojis = msg.match(/([:]+?[a-z0-9_-]+[:])/gi);
+		if (emojis != null) {
+			for (let i = 0;  i < emojis.length; i++) {
+				msg = replaceAll(msg, emojis[i], '<i class="em em-'+replaceAll(emojis[i],":","")+'" aria-role="presentation" aria-label="BAT"></i>');
+			}
+		}
+try{	
+	console.log(msg);
+	document.getElementById("message").innerHTML = replaceAll(msg,decodeURI("%0A"), "<br>");
+	document.getElementById("username").style.color =rolecol;
+	document.getElementById("username").style.fontWeight ="bold";
+}
+catch(e){alert(e);}
+
+
+</script>
+	</body>
+</html>

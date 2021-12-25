@@ -1,0 +1,112 @@
+<html>
+    <title>Discord Fake Message Generator</title>
+<meta name="description" content="This page is used to make fake Discord messages.">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://0kayf1n3.000webhostapp.com/discord/editor_r.html/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Discord Fake Message Generator">
+<meta property="og:description" content="This page is used to make fake Discord messages.">
+<meta property="og:image" content="https://0kayf1n3.000webhostapp.com/discord/cover.png">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="">
+<meta property="twitter:url" content="https://0kayf1n3.000webhostapp.com/discord/editor_r.html/">
+<meta name="twitter:title" content="Discord Fake Message Generator">
+<meta name="twitter:description" content="This page is used to make fake Discord messages.">
+<meta name="twitter:image" content="https://0kayf1n3.000webhostapp.com/discord/cover.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {
+        background-color: black;
+        display:flex;justify-content:center;align-items:center;
+        font-family: Arial;
+    }
+        #container {
+            padding: 10px;
+            border-radius: 10%;
+            background-color: white;
+        }
+        button{
+            border: 0;
+            background-color:gray;
+            font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  border-radius: 5%;
+        }
+        div.sticky {
+  bottom: 0;
+  right:0;
+  position: fixed;
+  color: white;
+  padding: 10px;
+}
+
+    </style>
+    <body>
+        <div id="container">
+        <span>Discord ID: </span><input type="text" id="userid">        <button id="btn-click-id">Fetch</button><br><br>
+        <span>Message: </span><textarea type="text" id="message"></textarea>
+
+    <br>
+        <span>Profile URL: </span><input type="text" id="pfp_str"><br>
+        <span>Username: </span><input type="text" id="username"><br>
+                <span>Role color: </span><input type="color" id="rolecol"><br>
+                <span>Date: </span><input id="date" type="text">
+        <button id="submit">Submit</button><br><a style="text-align:center;" href="help.html">Help?</a></div><br>
+            <span id="output"></span>
+        <img id="pfp" src=""><br>
+        <div class="sticky">Made with ❤️ from gamer0kayf1n3 (+ people who gave feedback)</div>
+        <script>
+            function request(url, params, callback){
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", url); 
+                let server_send = params;
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send(server_send);
+                xhr.onload = function(event){ 
+                  console.log(event.target.response);
+                  callback(JSON.parse(event.target.response));
+                };
+            };
+            function getData(data){
+         //     document.getElementById("output").innerHTML = JSON.stringify(data);  
+             // document.getElementById("pfp").src = "https://cdn.discordapp.com/avatars/"+data["discord"]["id"]+"/"+data["discord"]["avatar"]+".png?size=4096";
+              document.getElementById("pfp_str").value = "https://cdn.discordapp.com/avatars/"+data["discord"]["id"]+"/"+data["discord"]["avatar"]+".png?size=4096";
+document.getElementById("username").value = data["discord"]["username"];
+            }
+    
+            function buttonClicked() {
+                console.log("button clicked")
+                const userid = document.getElementById("userid").value;
+                request(
+                "https://discordfinder.gamer0kayf1n3.repl.co/" + userid,
+                {},
+                getData
+                );
+            }
+            document.getElementById("btn-click-id").addEventListener("click", buttonClicked);
+            function submitclicked() {
+                var message = document.getElementById("message").value;
+                var pfp = document.getElementById("pfp_str").value;
+                var uname = document.getElementById("username").value;
+                var rolecol = document.getElementById("rolecol").value;
+                var date = document.getElementById("date").value;
+                var params = new URLSearchParams({"uname":uname,"msg":message,"pfp":pfp,"rolecol":rolecol,
+                    "dt":date
+                }).toString();
+                //document.getElementById("output").innerHTML = params;
+                location.href="discord.html?"+params;
+            }
+            document.getElementById("submit").addEventListener("click", submitclicked);
+            var urlParams = new URLSearchParams(location.search);
+            if (urlParams.has("jumpscared")) {
+                window.history.pushState({}, '', "editor_r.html");
+                alert("sheeesh, all you needed was a little push for you to follow instructions...");}
+        </script>
+    </body>
+</html>
