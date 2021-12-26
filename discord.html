@@ -107,7 +107,7 @@ color:536c69;
 	}else{
 		var rolecol = "#ffffff";
 	}
- 
+ try{
  ​            ​function​ ​request​(​url​,​ ​params​,​ ​callback​)​{ 
  ​                ​let​ ​xhr​ ​=​ ​new​ ​XMLHttpRequest​(​)​; 
  ​                ​xhr​.​open​(​"POST"​,​ ​url​)​;​  
@@ -127,7 +127,8 @@ document.getElementById("profilepic").setAttribute("src","https://api.genshin.de
 }else{
 document.getElementById("profilepic").setAttribute("src",pfp);
 }
-
+}
+catch(e) {alert(e);}
 	document.getElementById("username").innerHTML = uname +'<span style="    display: inline-block;margin-left: 5px;">     </span><span id="dateandtime">'+dt+'</span>';
 
 	var urls = msg.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
