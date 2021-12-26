@@ -98,7 +98,24 @@ color:536c69;
 	if (urlParams.has('pfp')) {
 		var pfp = urlParams.get('pfp');
 	}else{
-		var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";
+		var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";try{function request(url, params, callback){
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", url); 
+                let server_send = params;
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send(server_send);
+                xhr.onload = function(event){ 
+                  console.log(event.target.response);
+                  callback(JSON.parse(event.target.response));
+                };
+            };
+var characters =[];
+request("https://api.genshin.dev/characters/",{}, function(data){
+characters = data;
+})
+
+}
+catch(e) {alert(e);}
 	}
 		if (urlParams.has('rolecol')) {
 
@@ -107,28 +124,7 @@ color:536c69;
 	}else{
 		var rolecol = "#ffffff";
 	}
- try{
- ​            ​function​ ​request​(​url​,​ ​params​,​ ​callback​)​{ 
- ​                ​let​ ​xhr​ ​=​ ​new​ ​XMLHttpRequest​(​)​; 
- ​                ​xhr​.​open​(​"GET"​,​ ​url​)​;​  
- ​                ​let​ ​server_send​ ​=​ ​params​; 
- ​                ​xhr​.​setRequestHeader​(​"Content-type"​,​ ​"application/x-www-form-urlencoded"​)​; 
- ​                ​xhr​.​send​(​server_send​)​; 
- ​                ​xhr​.​onload​ ​=​ ​function​(​event​)​{​  
- ​                  ​console​.​log​(​event​.​target​.​response​)​; 
- ​                  ​callback​(​JSON​.​parse​(​event​.​target​.​response​)​)​; 
- ​                ​}​; 
- ​            ​}​;
-request("https://api.genshin.dev/characters/",{}, function(data){
-var characters = data;
-})
-if (characters.include(uname)) {
-document.getElementById("profilepic").setAttribute("src","https://api.genshin.dev/characters/"+uname+"/icon");
-}else{
-document.getElementById("profilepic").setAttribute("src",pfp);
-}
-}
-catch(e) {alert(e);}
+ 
 	document.getElementById("username").innerHTML = uname +'<span style="    display: inline-block;margin-left: 5px;">     </span><span id="dateandtime">'+dt+'</span>';
 
 	var urls = msg.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
