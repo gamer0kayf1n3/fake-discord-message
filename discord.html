@@ -108,6 +108,8 @@ color:536c69;
 	}
 	if (urlParams.has('pfp')) {
 		var pfp = urlParams.get('pfp');
+alert(pfp);
+
 	} else{
 		var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";try{function request(url, params, callback){
                 let xhr = new XMLHttpRequest();
@@ -123,7 +125,8 @@ color:536c69;
 var characters =[];
 request("https://api.genshin.dev/characters/",{}, function(data){
 characters = data;
-if (characters.include(uname)) {document.getElementById("profilepic").setAttribute("src","https://api.genshin.dev/characters/"+uname+"/icon");}else{document.getElementById("profilepic").setAttribute("src",pfp);}
+alert(characters):
+if (characters.include(uname)) {alert(characters.include(uname));document.getElementById("profilepic").setAttribute("src","https://api.genshin.dev/characters/"+uname+"/icon");}else{document.getElementById("profilepic").setAttribute("src",pfp);}
 });
 
 }
