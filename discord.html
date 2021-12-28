@@ -125,7 +125,7 @@ alert(pfp);
 var characters =[];
 request("https://api.genshin.dev/characters/",{}, function(data){
 characters = data;
-alert(characters):
+alert(characters);
 if (characters.include(uname)) {alert(characters.include(uname));document.getElementById("profilepic").setAttribute("src","https://api.genshin.dev/characters/"+uname+"/icon");}else{document.getElementById("profilepic").setAttribute("src",pfp);}
 });
 
