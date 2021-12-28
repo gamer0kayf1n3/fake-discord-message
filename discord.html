@@ -128,7 +128,7 @@ var characters =[];
 request("https://api.genshin.dev/characters/",{}, function(data){
 characters = data;
 alert(characters);
-if (characters.includes(uname)) {alert(characters.include(uname));document.getElementById("profilepic").setAttribute("src","https://api.genshin.dev/characters/"+uname+"/icon");}else{document.getElementById("profilepic").setAttribute("src",pfp);}
+if (characters.includes(uname)) {alert(characters.includes(uname));document.getElementById("profilepic").setAttribute("src","https://api.genshin.dev/characters/"+uname+"/icon");}else{document.getElementById("profilepic").setAttribute("src",pfp);}
 });
 
 }
