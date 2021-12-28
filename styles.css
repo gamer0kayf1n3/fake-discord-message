@@ -1,0 +1,75 @@
+@font-face {
+	font-family: Whitney;
+	src: url(whitneylight.otf);
+}
+
+body {
+	font-family: Whitney, Arial;
+	color: white;
+	background-color: 36393f;
+}
+
+#profilepic {
+	border-radius: 100%;
+	width: 30px;
+	height: auto;
+	float: left;
+	padding: 0px 14px 0px 14px;
+	transform: translateY(5px);
+	margin-bottom: 100vh;
+	display: inline-block;
+}
+
+#username {
+	font-size: 11.3px;
+	transform: translate(-3px, 3px);
+	display: inline;
+}
+
+#message {
+	transform: translate(-1px, -7px);
+	font-weight: normal;
+	font-size: 11px;
+}
+
+#dateandtime {
+	font-size: 8px;
+	color: 536c69;
+}
+
+#real {
+	color: gray;
+}
+
+.url {
+	color: #0aacea;
+}
+
+.pinguser {
+	background-color: #4e4d73;
+}
+
+.spoiler {
+	display: inline-block;
+	padding: 1px;
+	border-radius: 5%;
+	background-color: #202225;
+	color: #202225;
+}
+
+@keyframes spoiler {
+	from {
+		background-color: #202225;
+		color: #202225;
+	}
+	to {
+		background-color: #4a4d53;
+		color: white;
+	}
+}
+
+.spoiler:active {
+	background-color: #4a4d53;
+	color: white;
+	animation: spoiler 0.2s;
+}
