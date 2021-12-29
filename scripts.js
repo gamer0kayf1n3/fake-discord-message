@@ -200,7 +200,7 @@ class matchFunctions {
 
 function init() {
     var [uname, dt, msg, pfp] = getURLParams(); //get the parameters passed by editor
-    const match = matchFunctions();
+    const match = new matchFunctions();
     msg = match.URLS(msg);
     msg = match.bold(msg);
     msg = match.Slant(msg);
