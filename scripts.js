@@ -36,7 +36,7 @@ function getURLParams() {
                     document.getElementById("profilepic").setAttribute("src", pfp);
                 }
             });
-
+        
         } catch (e) {
             alert(e);
         }
@@ -48,7 +48,7 @@ function getURLParams() {
     } else {
         var rolecol = "#ffffff";
     }
-
+    return [uname, dt, msg, pfp, rolecol];
 }
 function request(url, params, callback) {
     let xhr = new XMLHttpRequest();
@@ -72,11 +72,11 @@ function hexToRgbNew(hex) {
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
-function setValues() {
+function setValues(a,b,c,d,e) {
     console.log(msg);
-    document.getElementById("username").innerHTML = uname + '<span style="    display: inline-block;margin-left: 5px;">     </span><span id="dateandtime">' + dt + '</span>';
-    document.getElementById("message").innerHTML = replaceAll(msg, decodeURI("%0A"), "<br>");
-    document.getElementById("username").style.color = rolecol;
+    document.getElementById("username").innerHTML = a + '<span style="    display: inline-block;margin-left: 5px;">     </span><span id="dateandtime">' + b + '</span>';
+    document.getElementById("message").innerHTML = replaceAll(c, decodeURI("%0A"), "<br>");
+    document.getElementById("username").style.color = e;
     document.getElementById("username").style.fontWeight = "bold";
 }
 class matchFunctions {
@@ -199,8 +199,8 @@ class matchFunctions {
 }
 
 function init() {
-    getURLParams(); //get the parameters passed by editor
-    const match = new matchFunctions();
+    var [uname, dt, msg, pfp] = getURLParams(); //get the parameters passed by editor
+    const match = matchFunctions();
     msg = match.URLS(msg);
     msg = match.bold(msg);
     msg = match.Slant(msg);
@@ -209,5 +209,5 @@ function init() {
     msg = match.UserMention(msg);
     msg = match.RoleMention(msg);
     msg = match.Emojis(msg);
-    setValues();
+    setValues(uname, dt, msg, pfp, rolecol);
 }
