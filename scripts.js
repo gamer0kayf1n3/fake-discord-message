@@ -82,117 +82,117 @@ function setValues() {
 class matchFunctions {
     constructor() {
     }
-    URLS() {
-    var urls = msg.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
+    URLS(message) {
+    var urls = message.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
     if (urls != null) {
         for (var i = 0; i < urls.length; i++) {
-            msg = msg.replace(urls[i], '<span class="url">' + urls[i] + '</span>');
+            return message.replace(urls[i], '<span class="url">' + urls[i] + '</span>');
         }
     }
     }
-    bold() {
+    bold(message) {
     var alternate = 1;
 
-        var boldcount = (msg.match(/\*\*/g)).length;
+        var boldcount = (message.match(/\*\*/g)).length;
 
         for (var i = 0; i < boldcount; i++) {
             if (alternate) {
-                msg = msg.replace("**", "<b>");
+                return message.replace("**", "<b>");
                 console.log("replaced 1");
                 alternate--;
             } else {
-                msg = msg.replace("**", "</b>");
+                return message.replace("**", "</b>");
                 console.log("replaced 2");
                 alternate++;
             }
         }
     } 
-    Slant() {
+    Slant(message) {
         try {
             var alternate = 1;
-            var slantcount = (msg.match(/\*/g)).length;
+            var slantcount = (message.match(/\*/g)).length;
 
             for (var i = 0; i < slantcount; i++) {
                 if (alternate) {
-                    msg = msg.replace("*", "<i>");
+                    return message.replace("*", "<i>");
                     console.log("replaced 1");
                     alternate--;
                 } else {
-                    msg = msg.replace("*", "</i>");
+                    return message.replace("*", "</i>");
                     console.log("replaced 2");
                     alternate++;
                 }
             }
         } catch (e) {}
     }
-    Strike() {
+    Strike(message) {
 
         try {
             var alternate = 1;
-            var slantcount = (msg.match(/~~/g)).length;
+            var slantcount = (message.match(/~~/g)).length;
 
             for (var i = 0; i < slantcount; i++) {
                 if (alternate) {
-                    msg = msg.replace("~~", "<strike>");
+                    return message.replace("~~", "<strike>");
                     console.log("replaced 1");
                     alternate--;
                 } else {
-                    msg = msg.replace("~~", "</strike>");
+                    return message.replace("~~", "</strike>");
                     console.log("replaced 2");
                     alternate++;
                 }
             }
         } catch (e) {}
     }
-    Spoilers() {
+    Spoilers(message) {
         try {
             var alternate = 1;
-            var spoilercount = (msg.match(/||/g)).length;
+            var spoilercount = (message.match(/||/g)).length;
 
             for (var i = 0; i < spoilercount; i++) {
                 if (alternate) {
-                    msg = msg.replace("||", "<span class='spoiler'>");
+                    return message.replace("||", "<span class='spoiler'>");
                     console.log("replaced 1");
                     alternate--;
                 } else {
-                    msg = msg.replace("||", "</span>");
+                    return message.replace("||", "</span>");
                     console.log("replaced 2");
                     alternate++;
                 }
             }
         } catch (e) {}
     }
-    UserMention() {
+    UserMention(message) {
         var temp = "";
         var content = "";
         try {
-            var pinguser = (msg.match(/<([@#]+[A-z0-9\-~. ]{2,32})>/g));
+            var pinguser = (message.match(/<([@#]+[A-z0-9\-~. ]{2,32})>/g));
             for (var i = 0; i < pinguser.length; i++) {
                 content = pinguser[i];
                 temp = /<([@#]+[A-z0-9\-~. ]{2,32})>/.exec(content)[1];
-                msg = msg.replace(pinguser[i], "<span class='pinguser'>" + temp + "</span>");
+                return message.replace(pinguser[i], "<span class='pinguser'>" + temp + "</span>");
 
             }
         } catch (e) {}
     }
-    RoleMention() {
+    RoleMention(message) {
         var temp = "";
         var content = "";
         try {
-            var pinguser = (msg.match(/<(@&+[A-z0-9\-~. ]{2,32})(#[ABCDEF0-9abcdef]{6})>/g));
+            var pinguser = (message.match(/<(@&+[A-z0-9\-~. ]{2,32})(#[ABCDEF0-9abcdef]{6})>/g));
             for (var i = 0; i < pinguser.length; i++) {
                 content = pinguser[i];
                 temp = /<(@&+[A-z0-9\-~. ]{2,32})(#[ABCDEF0-9abcdef]{6})>/.exec(content);
-                msg = msg.replace(pinguser[i], "<span style='color: " + temp[2] + ";background-color:rgba(" + hexToRgbNew(temp[2].replace("#", "")) + ",0.5);'>" + temp[1].replace("&", "") + "</span>");
+                return message.replace(pinguser[i], "<span style='color: " + temp[2] + ";background-color:rgba(" + hexToRgbNew(temp[2].replace("#", "")) + ",0.5);'>" + temp[1].replace("&", "") + "</span>");
 
             }
         } catch (e) {}
     }
-    Emojis() {
-        var emojis = msg.match(/([:]+?[a-z0-9_-]+[:])/gi);
+    Emojis(message) {
+        var emojis = message.match(/([:]+?[a-z0-9_-]+[:])/gi);
         if (emojis != null) {
             for (let i = 0; i < emojis.length; i++) {
-                msg = replaceAll(msg, emojis[i], '<i class="em em-' + replaceAll(emojis[i], ":", "") + '" aria-role="presentation" aria-label="BAT"></i>');
+                return replaceAll(message, emojis[i], '<i class="em em-' + replaceAll(emojis[i], ":", "") + '" aria-role="presentation" aria-label="BAT"></i>');
             }
         }
     }
@@ -201,13 +201,13 @@ class matchFunctions {
 function init() {
     getURLParams(); //get the parameters passed by editor
     const match = matchFunctions();
-    match.URLS();
-    match.bold();
-    match.Slant();
-    match.Strike();
-    match.Spoilers();
-    match.UserMention();
-    match.RoleMention();
-    match.Emojis();
+    msg = match.URLS(msg);
+    msg = match.bold(msg);
+    msg = match.Slant(msg);
+    msg = match.Strike(msg);
+    msg = match.Spoilers(msg);
+    msg = match.UserMention(msg);
+    msg = match.RoleMention(msg);
+    msg = match.Emojis(msg);
     setValues();
 }
