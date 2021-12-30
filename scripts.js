@@ -79,7 +79,7 @@ try{
     document.getElementById("message").innerHTML = replaceAll(c, decodeURI("%0A"), "<br>");
     document.getElementById("username").style.color = e;
     document.getElementById("username").style.fontWeight = "bold";
-}except(er){alert(er);}
+}catch(er){alert(er);}
 }
 class matchFunctions {
     constructor() {
