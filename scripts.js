@@ -87,8 +87,9 @@ class matchFunctions {
     var urls = message.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
     if (urls != null) {
         for (var i = 0; i < urls.length; i++) {
-            return message.replace(urls[i], '<span class="url">' + urls[i] + '</span>');
+            message = message.replace(urls[i], '<span class="url">' + urls[i] + '</span>');
         }
+        return message;
     }else {return message;}
     }
     bold(message) {
@@ -101,14 +102,15 @@ try{
             if (alternate) {
                 console.log("replaced 1");
                 alternate--;
-                return message.replace("**", "<b>");
+                message = message.replace("**", "<b>");
                 
             } else {
                 console.log("replaced 2");
                 alternate++;
-                return message.replace("**", "</b>");
+                message = message.replace("**", "</b>");
             }
         }
+        return message;
 }catch(e){return message;}
     } 
     Slant(message) {
@@ -120,13 +122,14 @@ try{
                 if (alternate) {
                     console.log("replaced 1");
                     alternate--;
-                    return message.replace("*", "<i>");
+                    message = message.replace("*", "<i>");
                 } else {
                     console.log("replaced 2");
                     alternate++;
-                    return message.replace("*", "</i>");
+                    message = message.replace("*", "</i>");
                 }
             }
+            return message;
         } catch (e) {return message;}
     }
     Strike(message) {
@@ -139,13 +142,14 @@ try{
                 if (alternate) {
                     console.log("replaced 1");
                     alternate--;
-                    return message.replace("~~", "<strike>");
+                    message = message.replace("~~", "<strike>");
                 } else {
                     console.log("replaced 2");
                     alternate++;
-                    return message.replace("~~", "</strike>");
+                    message = message.replace("~~", "</strike>");
                 }
             }
+            return message;
         } catch (e) {return message;}
     }
     Spoilers(message) {
@@ -155,15 +159,16 @@ try{
 
             for (var i = 0; i < spoilercount; i++) {
                 if (alternate) {
-console.log("replaced 1");
+                    console.log("replaced 1");
                     alternate--;
-                    return message.replace("||", "<span class='spoiler'>");
+                    message = message.replace("||", "<span class='spoiler'>");
                 } else {
                     console.log("replaced 2");
                     alternate++;
-                    return message.replace("||", "</span>");
+                    message = message.replace("||", "</span>");
                 }
             }
+            return message;
         } catch (e) {return message;}
     }
     UserMention(message) {
@@ -174,9 +179,10 @@ console.log("replaced 1");
             for (var i = 0; i < pinguser.length; i++) {
                 content = pinguser[i];
                 temp = /<([@#]+[A-z0-9\-~. ]{2,32})>/.exec(content)[1];
-                return message.replace(pinguser[i], "<span class='pinguser'>" + temp + "</span>");
+                message = message.replace(pinguser[i], "<span class='pinguser'>" + temp + "</span>");
 
             }
+            return message;
         } catch (e) {return message;}
     }
     RoleMention(message) {
@@ -187,9 +193,10 @@ console.log("replaced 1");
             for (var i = 0; i < pinguser.length; i++) {
                 content = pinguser[i];
                 temp = /<(@&+[A-z0-9\-~. ]{2,32})(#[ABCDEF0-9abcdef]{6})>/.exec(content);
-                return message.replace(pinguser[i], "<span style='color: " + temp[2] + ";background-color:rgba(" + hexToRgbNew(temp[2].replace("#", "")) + ",0.5);'>" + temp[1].replace("&", "") + "</span>");
+                message = message.replace(pinguser[i], "<span style='color: " + temp[2] + ";background-color:rgba(" + hexToRgbNew(temp[2].replace("#", "")) + ",0.5);'>" + temp[1].replace("&", "") + "</span>");
 
             }
+            return message;
         } catch (e) {return message;}
     }
     Emojis(message) {
@@ -198,6 +205,7 @@ console.log("replaced 1");
             for (let i = 0; i < emojis.length; i++) {
                 return replaceAll(message, emojis[i], '<i class="em em-' + replaceAll(emojis[i], ":", "") + '" aria-role="presentation" aria-label="BAT"></i>');
             }
+            return message;
         } else {return message;}
     }
 }
