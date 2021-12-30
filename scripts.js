@@ -100,13 +100,14 @@ try{
 
         for (var i = 0; i < boldcount; i++) {
             if (alternate) {
-                return message.replace("**", "<b>");
                 console.log("replaced 1");
                 alternate--;
+                return message.replace("**", "<b>");
+                
             } else {
-                return message.replace("**", "</b>");
                 console.log("replaced 2");
                 alternate++;
+                return message.replace("**", "</b>");
             }
         }
 }catch(e){return message;}
@@ -118,13 +119,13 @@ try{
 
             for (var i = 0; i < slantcount; i++) {
                 if (alternate) {
-                    return message.replace("*", "<i>");
                     console.log("replaced 1");
                     alternate--;
+                    return message.replace("*", "<i>");
                 } else {
-                    return message.replace("*", "</i>");
                     console.log("replaced 2");
                     alternate++;
+                    return message.replace("*", "</i>");
                 }
             }
         } catch (e) {return message;}
@@ -137,13 +138,13 @@ try{
 
             for (var i = 0; i < slantcount; i++) {
                 if (alternate) {
-                    return message.replace("~~", "<strike>");
                     console.log("replaced 1");
                     alternate--;
+                    return message.replace("~~", "<strike>");
                 } else {
-                    return message.replace("~~", "</strike>");
                     console.log("replaced 2");
                     alternate++;
+                    return message.replace("~~", "</strike>");
                 }
             }
         } catch (e) {return message;}
@@ -155,13 +156,13 @@ try{
 
             for (var i = 0; i < spoilercount; i++) {
                 if (alternate) {
-                    return message.replace("||", "<span class='spoiler'>");
-                    console.log("replaced 1");
+console.log("replaced 1");
                     alternate--;
+                    return message.replace("||", "<span class='spoiler'>");
                 } else {
-                    return message.replace("||", "</span>");
                     console.log("replaced 2");
                     alternate++;
+                    return message.replace("||", "</span>");
                 }
             }
         } catch (e) {return message;}
