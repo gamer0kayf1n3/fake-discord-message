@@ -201,7 +201,7 @@ try{
 }
 
 function init() {
-    var [uname, dt, msg, pfp] = getURLParams(); //get the parameters passed by editor
+    var [uname, dt, msg, pfp, rolecol] = getURLParams(); //get the parameters passed by editor
     const match = new matchFunctions();
     msg = match.URLS(msg);
     msg = match.bold(msg);
@@ -211,5 +211,6 @@ function init() {
     msg = match.UserMention(msg);
     msg = match.RoleMention(msg);
     msg = match.Emojis(msg);
+alert(msg);
     setValues(uname, dt, msg, pfp, rolecol);
 }
