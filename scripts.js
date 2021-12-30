@@ -88,9 +88,10 @@ class matchFunctions {
         for (var i = 0; i < urls.length; i++) {
             return message.replace(urls[i], '<span class="url">' + urls[i] + '</span>');
         }
-    }
+    }else {return message;}
     }
     bold(message) {
+try{
     var alternate = 1;
 
         var boldcount = (message.match(/\*\*/g)).length;
@@ -106,6 +107,7 @@ class matchFunctions {
                 alternate++;
             }
         }
+}catch(e){return message;}
     } 
     Slant(message) {
         try {
@@ -123,7 +125,7 @@ class matchFunctions {
                     alternate++;
                 }
             }
-        } catch (e) {}
+        } catch (e) {return message;}
     }
     Strike(message) {
 
@@ -142,7 +144,7 @@ class matchFunctions {
                     alternate++;
                 }
             }
-        } catch (e) {}
+        } catch (e) {return message;}
     }
     Spoilers(message) {
         try {
@@ -160,7 +162,7 @@ class matchFunctions {
                     alternate++;
                 }
             }
-        } catch (e) {}
+        } catch (e) {return message;}
     }
     UserMention(message) {
         var temp = "";
@@ -173,7 +175,7 @@ class matchFunctions {
                 return message.replace(pinguser[i], "<span class='pinguser'>" + temp + "</span>");
 
             }
-        } catch (e) {}
+        } catch (e) {return message;}
     }
     RoleMention(message) {
         var temp = "";
@@ -186,7 +188,7 @@ class matchFunctions {
                 return message.replace(pinguser[i], "<span style='color: " + temp[2] + ";background-color:rgba(" + hexToRgbNew(temp[2].replace("#", "")) + ",0.5);'>" + temp[1].replace("&", "") + "</span>");
 
             }
-        } catch (e) {}
+        } catch (e) {return message;}
     }
     Emojis(message) {
         var emojis = message.match(/([:]+?[a-z0-9_-]+[:])/gi);
@@ -194,7 +196,7 @@ class matchFunctions {
             for (let i = 0; i < emojis.length; i++) {
                 return replaceAll(message, emojis[i], '<i class="em em-' + replaceAll(emojis[i], ":", "") + '" aria-role="presentation" aria-label="BAT"></i>');
             }
-        }
+        } else {return message;}
     }
 }
 
