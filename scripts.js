@@ -20,6 +20,7 @@ function getURLParams() {
     if (urlParams.has('pfp') || urlParams.get('pfp') != null) {
         var pfp = urlParams.get('pfp');
         alert(pfp);
+         document.getElementById("profilepic").setAttribute("src", pfp);
     } else {
         var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";
         try {
