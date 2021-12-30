@@ -20,7 +20,6 @@ function getURLParams() {
     if (urlParams.has('pfp') || urlParams.get('pfp') != null) {
         var pfp = urlParams.get('pfp');
         alert(pfp);
-         document.getElementById("profilepic").setAttribute("src", pfp);
     } else {
         var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";
         try {
@@ -31,9 +30,7 @@ function getURLParams() {
                 alert(characters);
                 if (characters.includes(uname)) {
                     alert(characters.includes(uname));
-                    document.getElementById("profilepic").setAttribute("src", "https://api.genshin.dev/characters/" + uname + "/icon");
-                } else {
-                    document.getElementById("profilepic").setAttribute("src", pfp);
+                    var pfp = "https://api.genshin.dev/characters/" + uname + "/icon"
                 }
             });
         
@@ -79,6 +76,7 @@ try{
     document.getElementById("message").innerHTML = replaceAll(c, decodeURI("%0A"), "<br>");
     document.getElementById("username").style.color = e;
     document.getElementById("username").style.fontWeight = "bold";
+    document.getElementById("profilepic").setAttribute("src", d);
 }catch(er){alert(er);}
 }
 class matchFunctions {
