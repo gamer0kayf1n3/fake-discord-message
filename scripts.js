@@ -74,7 +74,7 @@ function replaceAll(str, find, replace) {
 }
 function setValues(a,b,c,d,e) {
 try{
-    console.log(msg);
+    console.log(c);
     document.getElementById("username").innerHTML = a + '<span style="    display: inline-block;margin-left: 5px;">     </span><span id="dateandtime">' + b + '</span>';
     document.getElementById("message").innerHTML = replaceAll(c, decodeURI("%0A"), "<br>");
     document.getElementById("username").style.color = e;
