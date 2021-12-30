@@ -17,10 +17,9 @@ function getURLParams() {
     } else {
         var msg = "Text here";
     }
-    if (urlParams.has('pfp')) {
+    if (urlParams.has('pfp') || urlParams.get('pfp') != null) {
         var pfp = urlParams.get('pfp');
         alert(pfp);
-
     } else {
         var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";
         try {
