@@ -210,15 +210,20 @@ try{
     }
  codeblocks(message) {
     //<pre><code class="nohighlight">...</code></pre>
-    var codeblocks_detection = /```(?<language>[a-z]*)\n(?<code>[\s\S]*?)\n```/g
+    var codeblocks_detection = /```(?<language>[a-z]*)\n(?<code>[\s\S]*?)\n```/g;
     var arrayOfCodeBlocks = message.match(codeblocks_detection);
     if (arrayOfCodeBlocks != null) {
         for (let i = 0; i < arrayOfCodeBlocks.length; i++) {
             //arrayOfCodeBlocks[i] is the codeblock currently being edited
+            var codeblock_separation = codeblocks_detection.exec(arrayOfCodeBlocks[i]);
+            var codeblock_language = codeblock_separation[1];
+            var codeblock_content = codeblock_separation[2];
+            if (codeblock_language == "") {
+                codeblock_language = "plaintext";
+            }
+            var newElement = `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`;
         }
     }
-    var newElement = `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`;
-    var message = message;
 }
 }
 
