@@ -208,6 +208,18 @@ try{
             return message;
         } else {return message;}
     }
+ codeblocks(message) {
+    //<pre><code class="nohighlight">...</code></pre>
+    var codeblocks_detection = /```(?<language>[a-z]*)\n(?<code>[\s\S]*?)\n```/g
+    var arrayOfCodeBlocks = message.match(codeblocks_detection);
+    if (arrayOfCodeBlocks != null) {
+        for (let i = 0; i < arrayOfCodeBlocks.length; i++) {
+            //arrayOfCodeBlocks[i] is the codeblock currently being edited
+        }
+    }
+    var newElement = `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`;
+    var message = message;
+}
 }
 
 function init() {
