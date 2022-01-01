@@ -221,13 +221,15 @@ try{
             if (codeblock_language == "") {
                 codeblock_language = "plaintext";
             }
-            var newElement = `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`;
-        }
+            message = message.replace(arrayOfCodeBlocks[i], `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`);
+        
+P
     }
 }
 }
 
-function init() {
+function init() {var newElement = `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`;
+
     var [uname, dt, msg, pfp, rolecol] = getURLParams(); //get the parameters passed by editor
     const match = new matchFunctions();
     msg = match.URLS(msg);
