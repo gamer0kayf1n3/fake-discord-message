@@ -222,9 +222,9 @@ try{
                 codeblock_language = "plaintext";
             }
             message = message.replace(arrayOfCodeBlocks[i], `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`);
-        
-P
-    }
+    } else {
+return message;
+}
 }
 }
 
@@ -240,6 +240,7 @@ function init() {var newElement = `<pre><code class="language-` + code_lang + `"
     msg = match.UserMention(msg);
     msg = match.RoleMention(msg);
     msg = match.Emojis(msg);
+    msg = match.codeblocks(msg);
 alert(msg);
     setValues(uname, dt, msg, pfp, rolecol);
 }
