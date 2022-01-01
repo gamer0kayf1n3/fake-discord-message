@@ -1,3 +1,4 @@
+//add highlight.js
 function getURLParams() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -207,9 +208,28 @@ try{
             return message;
         } else {return message;}
     }
+ codeblocks(message) {
+    //<pre><code class="nohighlight">...</code></pre>
+    var codeblocks_detection = /```(?<language>[a-z]*)\n(?<code>[\s\S]*?)\n```/g;
+    var arrayOfCodeBlocks = message.match(codeblocks_detection);
+    if (arrayOfCodeBlocks != null) {
+        for (let i = 0; i < arrayOfCodeBlocks.length; i++) {
+            //arrayOfCodeBlocks[i] is the codeblock currently being edited
+            var codeblock_separation = codeblocks_detection.exec(arrayOfCodeBlocks[i]);
+            var codeblock_language = codeblock_separation[1];
+            var codeblock_content = codeblock_separation[2];
+            if (codeblock_language == "") {
+                codeblock_language = "plaintext";
+            }
+            message = message.replace(arrayOfCodeBlocks[i], `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`);
+    } else {
+return message;
+}
+}
 }
 
-function init() {
+function init() {var newElement = `<pre><code class="language-` + code_lang + `">` + code_snippet + `</code></pre>`;
+
     var [uname, dt, msg, pfp, rolecol] = getURLParams(); //get the parameters passed by editor
     const match = new matchFunctions();
     msg = match.URLS(msg);
@@ -220,6 +240,7 @@ function init() {
     msg = match.UserMention(msg);
     msg = match.RoleMention(msg);
     msg = match.Emojis(msg);
+    msg = match.codeblocks(msg);
 alert(msg);
     setValues(uname, dt, msg, pfp, rolecol);
 }
