@@ -1,3 +1,5 @@
+//add highlight.js
+
 function getURLParams() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -19,7 +21,6 @@ function getURLParams() {
     }
     if (urlParams.has('pfp') || urlParams.get('pfp') != null) {
         var pfp = urlParams.get('pfp');
-        alert(pfp);
     } else {
         var pfp = "https://pfps.gg/assets/pfps/4909-default-discord.png";
         try {
@@ -27,15 +28,12 @@ function getURLParams() {
             var characters = [];
             request("https://api.genshin.dev/characters/", {}, function(data) {
                 characters = data;
-                alert(characters);
                 if (characters.includes(uname)) {
-                    alert(characters.includes(uname));
-                    var pfp = "https://api.genshin.dev/characters/" + uname + "/icon"
+                    var pfp = "https://api.genshin.dev/characters/" + uname + "/icon";
                 }
             });
         
         } catch (e) {
-            alert(e);
         }
     }
     if (urlParams.has('rolecol')) {
@@ -66,6 +64,9 @@ function hexToRgbNew(hex) {
 
     return arrByte[1] + "," + arrByte[2] + "," + arrByte[3];
 }
+function replaceRange(s, start, end, substitute) {
+    return s.substring(0, start) + substitute + s.substring(end);
+}
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
@@ -74,10 +75,13 @@ try{
     console.log(c);
     document.getElementById("username").innerHTML = a + '<span style="    display: inline-block;margin-left: 5px;">     </span><span id="dateandtime">' + b + '</span>';
     document.getElementById("message").innerHTML = replaceAll(c, decodeURI("%0A"), "<br>");
+    for (var i = 0; i < document.getElementById("message").querySelectorAll("pre code").length; i++) {
+        document.getElementById("message").querySelectorAll("pre code")[i].innerHTML = replaceAll(document.getElementById("message").querySelectorAll("pre code")[i].innerHTML, "<br>", decodeURI("%0A"));
+    }
     document.getElementById("username").style.color = e;
     document.getElementById("username").style.fontWeight = "bold";
     document.getElementById("profilepic").setAttribute("src", d);
-}catch(er){alert(er);}
+}catch(er){}
 }
 class matchFunctions {
     constructor() {
@@ -207,6 +211,31 @@ try{
             return message;
         } else {return message;}
     }
+ codeblocks(message) {
+     try {
+    //<pre><code class="nohighlight">...</code></pre>
+    var codeblocks_detection = /```(?<language>[a-z]*)\n(?<code>[\s\S]*?)\n```/g;
+    var arrayOfCodeBlocks = message.match(codeblocks_detection);
+    if (arrayOfCodeBlocks != null) {
+        
+        for(var i=0; i < arrayOfCodeBlocks.length; i++) {//while codeblocks still exist
+            var codeblocks_detection = /```(?<language>[a-z]*)\n(?<code>[\s\S]*?)\n```/;
+            var codeblock_separation = codeblocks_detection.exec(arrayOfCodeBlocks[i]); //get parameters of each codeblock
+            console.log(codeblock_separation); 
+            var codeblock_language = codeblock_separation.groups.language; //set them on a variable
+            var codeblock_content = codeblock_separation.groups.code; 
+            if (codeblock_language == "") { /*if codeblock_language is empty, make it plaintext*/
+                codeblock_language = "plaintext";
+            }
+            
+            message = message.replace(arrayOfCodeBlocks[i], `<pre><code class="language-` + codeblock_language + `">` + codeblock_content + `</code></pre>`); //%
+        } return message;
+        
+    } else {
+return message;
+}
+}
+catch(e){ return message;}}
 }
 
 function init() {
@@ -220,6 +249,8 @@ function init() {
     msg = match.UserMention(msg);
     msg = match.RoleMention(msg);
     msg = match.Emojis(msg);
-alert(msg);
+    msg = match.codeblocks(msg);
+    hljs.highlightAll();
+
     setValues(uname, dt, msg, pfp, rolecol);
 }
