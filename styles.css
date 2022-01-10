@@ -55,21 +55,73 @@ body {
 	border-radius: 5%;
 	background-color: #202225;
 	color: #202225;
-}
-
-@keyframes spoiler {
-	from {
-		background-color: #202225;
-		color: #202225;
-	}
-	to {
-		background-color: #4a4d53;
-		color: white;
-	}
+	transition: background-color 0.2s, color 0.2s;
 }
 
 .spoiler:active {
 	background-color: #4a4d53;
 	color: white;
-	animation: spoiler 0.2s;
 }
+
+
+/* custom styles */
+/* custom hljs styles*/
+
+/* custom hljs styles*/
+
+.hljs {
+    background-color: #2f3136;
+    border: 1px solid #202225;
+    color: white;
+    border-radius: 5px;
+}
+
+.hljs,
+.hljs-subst {
+	color: #c5c8c6;
+}
+
+.hljs-comment {
+	color: #3c4c5c;
+}
+
+.hljs-attribute,
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta-keyword,
+.hljs-name,
+.hljs-selector-tag {
+    color: red;
+}
+
+.hljs-deletion,
+.hljs-number,
+.hljs-quote,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-string,
+.hljs-template-tag,
+.hljs-type {
+	color: #99cc99;
+}
+
+.hljs-section,
+.hljs-title, .function_ {
+	color: white;
+	font-weight: 400;
+}
+
+.hljs-link,
+.hljs-regexp,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-symbol,
+.hljs-template-variable,
+.hljs-variable {
+	color: #bc6060;
+}
+
+.hljs-literal {
+	color: #78a960;
+}
+
