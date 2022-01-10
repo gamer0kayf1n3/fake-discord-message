@@ -30,6 +30,7 @@ body {
 	transform: translate(-1px, -7px);
 	font-weight: normal;
 	font-size: 11px;
+	margin-right:100px;
 }
 
 #dateandtime {
